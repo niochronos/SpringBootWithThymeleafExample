@@ -1,5 +1,6 @@
 package com.oliinyk.yaroslav.SpringBootWithThymeleafExample.entity;
 
+import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.type.HolidayType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -18,9 +19,5 @@ public class HolidayEntity extends BaseEntity {
     private String reason;
 
     @Enumerated(EnumType.STRING)
-    private Type type;
-
-    public enum Type {
-        FESTIVAL, FEDERAL
-    }
+    private HolidayType type;
 }

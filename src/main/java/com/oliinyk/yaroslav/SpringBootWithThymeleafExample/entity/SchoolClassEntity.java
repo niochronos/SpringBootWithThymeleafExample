@@ -1,8 +1,6 @@
 package com.oliinyk.yaroslav.SpringBootWithThymeleafExample.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,8 +17,6 @@ public class SchoolClassEntity extends BaseEntity {
 //    @GenericGenerator(name = "native", strategy = "native")
     private int classId;
 
-    @NotBlank(message = "Name must not be blank")
-    @Size(min = 3, message = "Name must be at least 3 characters long")
     private String name;
 
     @OneToMany(

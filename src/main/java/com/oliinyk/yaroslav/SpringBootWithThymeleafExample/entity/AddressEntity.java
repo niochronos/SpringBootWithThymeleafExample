@@ -1,12 +1,8 @@
 package com.oliinyk.yaroslav.SpringBootWithThymeleafExample.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.util.Set;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -17,17 +13,15 @@ public class AddressEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @GeneratedValue(strategy= GenerationType.AUTO, generator = "native")
 //    @GenericGenerator(name = "native", strategy = "native")
-    private int classId;
+    private int addressId;
 
-    @NotBlank(message = "Name must not be blank")
-    @Size(min = 3, message = "Name must be at least 3 characters long")
-    private String name;
+    private String address1;
 
-    @OneToMany(
-        mappedBy = "schoolClassEntity",
-        fetch = FetchType.LAZY,
-        cascade = CascadeType.PERSIST,
-        targetEntity = PersonEntity.class
-    )
-    private Set<PersonEntity> persons;
+    private String address2;
+
+    private String city;
+
+    private String state;
+
+    private String zipCode;
 }
