@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `holidays` (
   `updated_by` varchar(50) DEFAULT NULL
 );
 
-CREATE TABLE IF NOT EXISTS `roles` (
+CREATE TABLE IF NOT EXISTS `role` (
   `role_id` int NOT NULL AUTO_INCREMENT,
   `role_name` varchar(50) NOT NULL,
   `created_at` TIMESTAMP NOT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `person` (
   `updated_at` TIMESTAMP DEFAULT NULL,
   `updated_by` varchar(50) DEFAULT NULL,
    PRIMARY KEY (`person_id`),
-   FOREIGN KEY (role_id) REFERENCES roles(role_id),
+   FOREIGN KEY (role_id) REFERENCES role(role_id),
    FOREIGN KEY (address_id) REFERENCES address(address_id),
    FOREIGN KEY (class_id) REFERENCES class(class_id)
 );
