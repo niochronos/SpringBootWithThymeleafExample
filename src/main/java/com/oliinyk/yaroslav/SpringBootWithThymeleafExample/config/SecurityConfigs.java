@@ -23,7 +23,17 @@ public class SecurityConfigs {
             )
             .authorizeHttpRequests(
                 (request) -> request
+                    .requestMatchers("/admin/**").hasRole("ADMIN")
+                    .requestMatchers("/assets/**").permitAll()
                     .requestMatchers(PathRequest.toH2Console()).permitAll()
+            )
+            .formLogin(
+                loginConfigurer -> loginConfigurer.loginPage("/login")
+                    .defaultSuccessUrl("/dashboard").failureUrl("/login?error=true").permitAll()
+            )
+            .logout(
+                logoutConfigurer -> logoutConfigurer.logoutSuccessUrl("/login?logout=true")
+                    .invalidateHttpSession(true).permitAll()
             )
             .httpBasic(Customizer.withDefaults());
 

@@ -6,7 +6,8 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Entity(name = "address")
+@Entity
+@Table(name = "address")
 public class AddressEntity extends BaseEntity {
 
     @Id

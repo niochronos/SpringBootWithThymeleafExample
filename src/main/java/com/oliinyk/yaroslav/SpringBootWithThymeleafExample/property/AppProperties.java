@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Component("appProperties")
 @Data
-@ConfigurationProperties(prefix = "appProperty")
+@ConfigurationProperties(prefix = "app-property")
 @Validated
 public class AppProperties {
 

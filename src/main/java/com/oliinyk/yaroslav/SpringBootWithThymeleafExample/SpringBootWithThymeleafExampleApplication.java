@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories("com.oliinyk.yaroslav.repository")
-@EntityScan("com.oliinyk.yaroslav.entity")
+@EnableJpaRepositories("com.oliinyk.yaroslav.SpringBootWithThymeleafExample.repository")
+@EntityScan("com.oliinyk.yaroslav.SpringBootWithThymeleafExample.entity")
 @EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
 public class SpringBootWithThymeleafExampleApplication {
 

@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `contact_msg` (
   `updated_by` varchar(50) DEFAULT NULL
 );
 
-CREATE TABLE IF NOT EXISTS `holidays` (
+CREATE TABLE IF NOT EXISTS `holiday` (
   `day` varchar(20) NOT NULL,
   `reason` varchar(100) NOT NULL,
   `type` varchar(20) NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `class` (
   `created_by` varchar(50) NOT NULL,
   `updated_at` TIMESTAMP DEFAULT NULL,
   `updated_by` varchar(50) DEFAULT NULL,
-   PRIMARY KEY (`class_id`)
+  PRIMARY KEY (`class_id`)
 );
 
 CREATE TABLE IF NOT EXISTS `person` (
@@ -73,10 +73,10 @@ CREATE TABLE IF NOT EXISTS `person` (
   `created_by` varchar(50) NOT NULL,
   `updated_at` TIMESTAMP DEFAULT NULL,
   `updated_by` varchar(50) DEFAULT NULL,
-   PRIMARY KEY (`person_id`),
-   FOREIGN KEY (role_id) REFERENCES role(role_id),
-   FOREIGN KEY (address_id) REFERENCES address(address_id),
-   FOREIGN KEY (class_id) REFERENCES class(class_id)
+  PRIMARY KEY (`person_id`),
+  FOREIGN KEY (role_id) REFERENCES role(role_id),
+  FOREIGN KEY (address_id) REFERENCES address(address_id),
+  FOREIGN KEY (class_id) REFERENCES class(class_id)
 );
 
 -- ALTER TABLE `person`
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `person` (
 -- ADD CONSTRAINT `FK_CLASS_CLASS_ID` FOREIGN KEY (`class_id`)
 -- REFERENCES `class`(`class_id`);
 
-CREATE TABLE IF NOT EXISTS `courses` (
+CREATE TABLE IF NOT EXISTS `course` (
   `course_id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `fees` varchar(10) NOT NULL,
@@ -92,13 +92,13 @@ CREATE TABLE IF NOT EXISTS `courses` (
   `created_by` varchar(50) NOT NULL,
   `updated_at` TIMESTAMP DEFAULT NULL,
   `updated_by` varchar(50) DEFAULT NULL,
-   PRIMARY KEY (`course_id`)
+  PRIMARY KEY (`course_id`)
 );
 
 CREATE TABLE IF NOT EXISTS `person_courses` (
   `person_id` int NOT NULL,
   `course_id` int NOT NULL,
   FOREIGN KEY (person_id) REFERENCES person(person_id),
-  FOREIGN KEY (course_id) REFERENCES courses(course_id),
-   PRIMARY KEY (`person_id`,`course_id`)
+  FOREIGN KEY (course_id) REFERENCES course(course_id),
+  PRIMARY KEY (`person_id`,`course_id`)
 );

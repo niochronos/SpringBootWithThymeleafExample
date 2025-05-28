@@ -55,7 +55,8 @@ public class ContactServiceImpl implements ContactService {
     }
 
     public boolean updateMsgStatus(int contactId) {
-        int rows = contactRepository.updateMsgStatusNative(AppConstants.CLOSE, contactId);
+        int rows = contactRepository.updateStatusById(AppConstants.CLOSE, contactId);
+//        int rows = contactRepository.updateMsgStatusNative(AppConstants.CLOSE, contactId);
         return rows > 0;
     }
 }

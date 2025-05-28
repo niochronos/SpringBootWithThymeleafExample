@@ -9,7 +9,8 @@ import java.util.Set;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Entity(name = "person")
+@Entity
+@Table(name = "person")
 public class PersonEntity extends BaseEntity {
 
     @Id

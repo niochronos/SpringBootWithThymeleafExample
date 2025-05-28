@@ -26,17 +26,17 @@ public interface ContactRepository extends JpaRepository<ContactEntity, Integer>
     @Query("UPDATE ContactEntity c SET c.status = ?1 WHERE c.contactId = ?2")
     int updateStatusById(String status, int id);
 
-    Page<ContactEntity> findOpenMsgs(@Param("status") String status, Pageable pageable);
+//    Page<ContactEntity> findOpenMsgs(@Param("status") String status, Pageable pageable);
 
-    @Transactional
-    @Modifying
-    int updateMsgStatus(String status, int id);
+//    @Transactional
+//    @Modifying
+//    int updateMsgStatus(String status, int id);
 
-    @Query(nativeQuery = true)
-    Page<ContactEntity> findOpenMsgsNative(@Param("status") String status, Pageable pageable);
+//    @Query(nativeQuery = true)
+//    Page<ContactEntity> findOpenMsgsNative(@Param("status") String status, Pageable pageable);
 
-    @Transactional
-    @Modifying
-    @Query(nativeQuery = true)
-    int updateMsgStatusNative(String status, int id);
+//    @Transactional
+//    @Modifying
+//    @Query(nativeQuery = true)
+//    int updateMsgStatusNative(String status, int id);
 }

@@ -1,16 +1,14 @@
 package com.oliinyk.yaroslav.SpringBootWithThymeleafExample.entity;
 
 import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.type.HolidayType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Entity(name = "holidays")
+@Entity
+@Table(name = "holiday")
 public class HolidayEntity extends BaseEntity {
 
     @Id

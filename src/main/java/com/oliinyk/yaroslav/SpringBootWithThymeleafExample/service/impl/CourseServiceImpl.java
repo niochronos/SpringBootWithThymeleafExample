@@ -6,11 +6,13 @@ import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.repository.CourseRepo
 import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Repository
 public class CourseServiceImpl implements CourseService {
 
     @Autowired
