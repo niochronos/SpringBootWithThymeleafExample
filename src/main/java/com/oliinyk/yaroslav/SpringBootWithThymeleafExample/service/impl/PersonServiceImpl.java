@@ -10,6 +10,7 @@ import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.repository.PersonRepo
 import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.repository.RoleRepository;
 import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -23,16 +24,16 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     private RoleRepository roleRepository;
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public boolean createNewPerson(PersonDto personDto) {
         RoleEntity roleEntity = roleRepository.getByRoleName(AppConstants.STUDENT_ROLE);
         personDto.setRole(RoleMapper.mapToDto(roleEntity));
 
-//        String encodedPwd = passwordEncoder.encode(personDto.getPwd());
-//        personDto.setPwd(encodedPwd);
-//        personDto.setConfirmPwd(encodedPwd);
+        String encodedPwd = passwordEncoder.encode(personDto.getPwd());
+        personDto.setPwd(encodedPwd);
+        personDto.setConfirmPwd(encodedPwd);
 
         PersonEntity personEntity = personRepository.save(
             PersonMapper.mapToEntity(personDto)
