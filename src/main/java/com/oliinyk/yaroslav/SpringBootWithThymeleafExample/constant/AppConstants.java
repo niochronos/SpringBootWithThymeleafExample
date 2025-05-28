@@ -5,4 +5,6 @@ public interface AppConstants {
     String CLOSE = "Close";
     String STUDENT_ROLE = "STUDENT";
     String ADMIN_ROLE = "ADMIN";
+    String ORDER_BY_ASC = "asc";
+    String ORDER_BY_DESC = "desc";
 }

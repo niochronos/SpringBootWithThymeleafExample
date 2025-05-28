@@ -12,5 +12,5 @@ public interface PersonService {
 
     Optional<PersonDto> readByEmail(String email);
 
-    void save(PersonDto personDto);
+    PersonDto save(PersonDto personDto);
 }

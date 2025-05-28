@@ -52,7 +52,9 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void save(PersonDto personDto) {
-        personRepository.save(PersonMapper.mapToEntity(personDto));
+    public PersonDto save(PersonDto personDto) {
+        return PersonMapper.mapToDto(
+            personRepository.save(PersonMapper.mapToEntity(personDto))
+        );
     }
 }

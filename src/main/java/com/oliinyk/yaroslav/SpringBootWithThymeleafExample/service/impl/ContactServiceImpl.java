@@ -1,6 +1,6 @@
 package com.oliinyk.yaroslav.SpringBootWithThymeleafExample.service.impl;
 
-import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.constant.AppConstants;
+import static com.oliinyk.yaroslav.SpringBootWithThymeleafExample.constant.AppConstants.*;
 import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.dto.ContactDto;
 import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.entity.ContactEntity;
 import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.mapper.ContactMapper;
@@ -33,7 +33,7 @@ public class ContactServiceImpl implements ContactService {
             return false;
         }
 
-        contactDto.setStatus(AppConstants.OPEN);
+        contactDto.setStatus(OPEN);
         ContactEntity savedContact = contactRepository.save(
             ContactMapper.mapToEntity(contactDto)
         );
@@ -48,14 +48,14 @@ public class ContactServiceImpl implements ContactService {
         Pageable pageable = PageRequest.of(
             pageNum - 1,
             pageSize,
-            sortDir.equals("asc") ? Sort.by(sortField).ascending() : Sort.by(sortField).descending()
+            sortDir.equals(ORDER_BY_ASC) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending()
         );
-        Page<ContactEntity> msgPage = contactRepository.findByStatusWithQuery(AppConstants.OPEN, pageable);
+        Page<ContactEntity> msgPage = contactRepository.findByStatusWithQuery(OPEN, pageable);
         return msgPage.map(ContactMapper::mapToDto);
     }
 
     public boolean updateMsgStatus(int contactId) {
-        int rows = contactRepository.updateStatusById(AppConstants.CLOSE, contactId);
+        int rows = contactRepository.updateStatusById(CLOSE, contactId);
 //        int rows = contactRepository.updateMsgStatusNative(AppConstants.CLOSE, contactId);
         return rows > 0;
     }

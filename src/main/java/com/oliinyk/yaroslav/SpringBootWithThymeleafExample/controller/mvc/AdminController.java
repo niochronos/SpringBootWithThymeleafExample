@@ -1,4 +1,4 @@
-package com.oliinyk.yaroslav.SpringBootWithThymeleafExample.controller;
+package com.oliinyk.yaroslav.SpringBootWithThymeleafExample.controller.mvc;
 
 import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.dto.CourseDto;
 import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.dto.PersonDto;
