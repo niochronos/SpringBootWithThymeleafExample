@@ -3,12 +3,14 @@ package com.oliinyk.yaroslav.SpringBootWithThymeleafExample.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 @Entity
 @Table(name = "class")
 public class SchoolClassEntity extends BaseEntity {
@@ -24,7 +26,6 @@ public class SchoolClassEntity extends BaseEntity {
     @OneToMany(
         mappedBy = "schoolClass",
         fetch = FetchType.LAZY,
-        cascade = CascadeType.PERSIST,
         targetEntity = PersonEntity.class
     )
     private Set<PersonEntity> persons = new HashSet<>();

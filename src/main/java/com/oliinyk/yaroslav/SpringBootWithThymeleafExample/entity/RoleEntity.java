@@ -3,9 +3,11 @@ package com.oliinyk.yaroslav.SpringBootWithThymeleafExample.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 @Entity
 @Table(name = "role")
 public class RoleEntity extends BaseEntity {

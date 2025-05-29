@@ -4,9 +4,11 @@ import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.type.HolidayType;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 @Entity
 @Table(name = "holiday")
 public class HolidayEntity extends BaseEntity {

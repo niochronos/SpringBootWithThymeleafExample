@@ -3,6 +3,8 @@ package com.oliinyk.yaroslav.SpringBootWithThymeleafExample.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 //@SqlResultSetMappings({
 //    @SqlResultSetMapping(name = "SqlResultSetMapping.count", columns = @ColumnResult(name = "cnt"))
@@ -27,8 +29,8 @@ import lombok.EqualsAndHashCode;
 //    @NamedNativeQuery(name = "ContactEntity.updateMsgStatusNative",
 //        query = "UPDATE contact_msg c SET c.status = ?1 WHERE c.contact_id = ?2")
 //})
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 @Entity
 @Table(name = "contact_msg")
 public class ContactEntity extends BaseEntity {

@@ -3,12 +3,14 @@ package com.oliinyk.yaroslav.SpringBootWithThymeleafExample.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 @Entity
 @Table(name = "person")
 public class PersonEntity extends BaseEntity {
@@ -27,7 +29,7 @@ public class PersonEntity extends BaseEntity {
 
     private String pwd;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, targetEntity = RoleEntity.class)
+    @OneToOne(fetch = FetchType.EAGER, targetEntity = RoleEntity.class)
     @JoinColumn(name = "role_id", referencedColumnName = "roleId", nullable = false)
     private RoleEntity role;
 
@@ -39,7 +41,7 @@ public class PersonEntity extends BaseEntity {
     @JoinColumn(name = "class_id", referencedColumnName = "classId", nullable = true)
     private SchoolClassEntity schoolClass;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "person_course",
         joinColumns = {
