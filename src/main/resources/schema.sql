@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `course` (
   PRIMARY KEY (`course_id`)
 );
 
-CREATE TABLE IF NOT EXISTS `person_courses` (
+CREATE TABLE IF NOT EXISTS `person_course` (
   `person_id` int NOT NULL,
   `course_id` int NOT NULL,
   FOREIGN KEY (person_id) REFERENCES person(person_id),

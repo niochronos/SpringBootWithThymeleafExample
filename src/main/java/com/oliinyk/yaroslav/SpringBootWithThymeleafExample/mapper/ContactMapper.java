@@ -7,11 +7,14 @@ public class ContactMapper {
 
     private ContactMapper() {}
 
-    public static ContactDto mapToDto(ContactEntity entity) {
-        return ContactMapper.mapToDto(entity, new ContactDto());
+    public static ContactDto toDto(ContactEntity entity) {
+        return ContactMapper.toDto(entity, new ContactDto());
     }
 
-    public static ContactDto mapToDto(ContactEntity entity, ContactDto dto) {
+    public static ContactDto toDto(ContactEntity entity, ContactDto dto) {
+        if (entity == null) {
+            return null;
+        }
         dto.setContactId(entity.getContactId());
         dto.setName(entity.getName());
         dto.setMobileNum(entity.getMobileNum());
@@ -22,11 +25,14 @@ public class ContactMapper {
         return dto;
     }
 
-    public static ContactEntity mapToEntity(ContactDto dto) {
-        return ContactMapper.mapToEntity(dto, new ContactEntity());
+    public static ContactEntity toEntity(ContactDto dto) {
+        return ContactMapper.toEntity(dto, new ContactEntity());
     }
 
-    public static ContactEntity mapToEntity(ContactDto dto, ContactEntity entity) {
+    public static ContactEntity toEntity(ContactDto dto, ContactEntity entity) {
+        if (dto == null) {
+            return null;
+        }
         entity.setContactId(dto.getContactId());
         entity.setName(dto.getName());
         entity.setMobileNum(dto.getMobileNum());

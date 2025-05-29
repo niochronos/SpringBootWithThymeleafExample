@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -21,10 +22,10 @@ public class SchoolClassEntity extends BaseEntity {
     private String name;
 
     @OneToMany(
-        mappedBy = "schoolClassEntity",
+        mappedBy = "schoolClass",
         fetch = FetchType.LAZY,
         cascade = CascadeType.PERSIST,
         targetEntity = PersonEntity.class
     )
-    private Set<PersonEntity> persons;
+    private Set<PersonEntity> persons = new HashSet<>();
 }

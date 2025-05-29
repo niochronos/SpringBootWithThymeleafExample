@@ -21,17 +21,17 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<CourseDto> findAll(Sort sort) {
         return courseRepository.findAll(sort).stream()
-            .map(CourseMapper::mapToDto)
+            .map(CourseMapper::toDto)
             .collect(Collectors.toList());
     }
 
     @Override
     public Optional<CourseDto> findById(int id) {
-        return courseRepository.findById(id).map(CourseMapper::mapToDto);
+        return courseRepository.findById(id).map(CourseMapper::toDto);
     }
 
     @Override
     public void save(CourseDto courseDto) {
-        courseRepository.save(CourseMapper.mapToEntity(courseDto));
+        courseRepository.save(CourseMapper.toEntity(courseDto));
     }
 }

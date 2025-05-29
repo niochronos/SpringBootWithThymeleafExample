@@ -9,57 +9,67 @@ public class PersonMapper {
 
     private PersonMapper() {}
 
-    public static PersonDto mapToDto(PersonEntity entity) {
-        return PersonMapper.mapToDto(entity, new PersonDto());
+    public static PersonDto toDto(PersonEntity entity) {
+        return PersonMapper.toDto(entity, new PersonDto());
     }
 
-    public static PersonDto mapToDto(PersonEntity entity, PersonDto dto) {
+    public static PersonDto toDto(PersonEntity entity, PersonDto dto) {
+        if (entity == null) {
+            return null;
+        }
         dto.setPersonId(entity.getPersonId());
         dto.setName(entity.getName());
         dto.setMobileNumber(entity.getMobileNumber());
         dto.setEmail(entity.getEmail());
         dto.setPwd(entity.getPwd());
         dto.setRole(
-            RoleMapper.mapToDto(entity.getRole())
+            RoleMapper.toDto(entity.getRole())
         );
         dto.setAddress(
-            AddressMapper.mapToDto(entity.getAddress())
+            AddressMapper.toDto(entity.getAddress())
         );
         dto.setSchoolClass(
-            SchoolClassMapper.mapToDto(entity.getSchoolClassEntity())
+            SchoolClassMapper.toDto(entity.getSchoolClass())
         );
-        dto.setCourses(entity.getCourses().stream()
-            .map(CourseMapper::mapToDto)
-            .collect(Collectors.toSet())
-        );
+        if (entity.getCourses() != null) {
+            dto.setCourses(entity.getCourses().stream()
+                .map(CourseMapper::toDto)
+                .collect(Collectors.toSet())
+            );
+        }
 
         return dto;
     }
 
-    public static PersonEntity mapToEntity(PersonDto dto) {
-        return PersonMapper.mapToEntity(dto, new PersonEntity());
+    public static PersonEntity toEntity(PersonDto dto) {
+        return PersonMapper.toEntity(dto, new PersonEntity());
     }
 
-    public static PersonEntity mapToEntity(PersonDto dto, PersonEntity entity) {
+    public static PersonEntity toEntity(PersonDto dto, PersonEntity entity) {
+        if (dto == null) {
+            return null;
+        }
         entity.setPersonId(dto.getPersonId());
         entity.setName(dto.getName());
         entity.setMobileNumber(dto.getMobileNumber());
         entity.setEmail(dto.getEmail());
         entity.setPwd(dto.getPwd());
         entity.setRole(
-            RoleMapper.mapToEntity(dto.getRole())
+            RoleMapper.toEntity(dto.getRole())
         );
         entity.setAddress(
-            AddressMapper.mapToEntity(dto.getAddress())
+            AddressMapper.toEntity(dto.getAddress())
         );
-        entity.setSchoolClassEntity(
-            SchoolClassMapper.mapToEntity(dto.getSchoolClass())
+        entity.setSchoolClass(
+            SchoolClassMapper.toEntity(dto.getSchoolClass())
         );
-        entity.setCourses(
-            dto.getCourses().stream()
-                .map(CourseMapper::mapToEntity)
-                .collect(Collectors.toSet())
-        );
+        if (dto.getCourses() != null) {
+            entity.setCourses(
+                dto.getCourses().stream()
+                    .map(CourseMapper::toEntity)
+                    .collect(Collectors.toSet())
+            );
+        }
 
         return entity;
     }

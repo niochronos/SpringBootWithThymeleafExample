@@ -20,20 +20,20 @@ public class SchoolClassServiceImpl implements SchoolClassService {
     @Override
     public List<SchoolClassDto> findAll() {
         return schoolClassRepository.findAll().stream()
-            .map(SchoolClassMapper::mapToDto)
+            .map(SchoolClassMapper::toDto)
             .collect(Collectors.toList());
     }
 
     @Override
     public SchoolClassDto save(SchoolClassDto schoolClassDto) {
-        return SchoolClassMapper.mapToDto(
-            schoolClassRepository.save(SchoolClassMapper.mapToEntity(schoolClassDto))
+        return SchoolClassMapper.toDto(
+            schoolClassRepository.save(SchoolClassMapper.toEntity(schoolClassDto))
         );
     }
 
     @Override
     public Optional<SchoolClassDto> findById(int id) {
-        return schoolClassRepository.findById(id).map(SchoolClassMapper::mapToDto);
+        return schoolClassRepository.findById(id).map(SchoolClassMapper::toDto);
     }
 
     @Override

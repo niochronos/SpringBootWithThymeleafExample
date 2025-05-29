@@ -167,8 +167,8 @@ public class AdminController {
         Optional<CourseDto> courseOpt = courseService.findById(id);
         modelAndView.addObject("person", new PersonDto());
         courseOpt.ifPresent(courseDto -> {
-            modelAndView.addObject("courses", courseDto);
-            session.setAttribute("courses", courseDto);
+            modelAndView.addObject("course", courseDto);
+            session.setAttribute("course", courseDto);
         });
         if(error != null) {
             errorMessage = "Invalid Email entered!!";
@@ -208,16 +208,16 @@ public class AdminController {
         @RequestParam int personId,
         HttpSession session
     ) {
-        CourseDto course = (CourseDto) session.getAttribute("course");
+        CourseDto courseDto = (CourseDto) session.getAttribute("course");
         Optional<PersonDto> personOpt = personService.findById(personId);
         personOpt.ifPresent(personDto -> {
-            personDto.getCourses().remove(course);
-            course.getPersons().remove(personDto);
+            personDto.getCourses().remove(courseDto);
+            courseDto.getPersons().remove(personDto);
             personService.save(personDto);
         });
-        session.setAttribute("course", course);
+        session.setAttribute("course", courseDto);
         ModelAndView modelAndView = new ModelAndView(
-            "redirect:/admin/viewStudents?id=" + course.getCourseId()
+            "redirect:/admin/viewStudents?id=" + courseDto.getCourseId()
         );
         return modelAndView;
     }

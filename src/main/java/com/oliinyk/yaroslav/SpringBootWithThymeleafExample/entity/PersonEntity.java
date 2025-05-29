@@ -25,15 +25,7 @@ public class PersonEntity extends BaseEntity {
 
     private String email;
 
-//    Not needed on backend
-//    @Transient
-//    private String confirmEmail;
-
     private String pwd;
-
-//    Not needed on backend
-//    @Transient
-//    private String confirmPwd;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, targetEntity = RoleEntity.class)
     @JoinColumn(name = "role_id", referencedColumnName = "roleId", nullable = false)
@@ -45,11 +37,11 @@ public class PersonEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "class_id", referencedColumnName = "classId", nullable = true)
-    private SchoolClassEntity schoolClassEntity;
+    private SchoolClassEntity schoolClass;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
-        name = "person_courses",
+        name = "person_course",
         joinColumns = {
             @JoinColumn(name = "person_id", referencedColumnName = "personId")
         },

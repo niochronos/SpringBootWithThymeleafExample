@@ -7,11 +7,14 @@ public class HolidayMapper {
 
     private HolidayMapper() {}
 
-    public static HolidayDto mapToDto(HolidayEntity entity) {
-        return mapToDto(entity, new HolidayDto());
+    public static HolidayDto toDto(HolidayEntity entity) {
+        return toDto(entity, new HolidayDto());
     }
 
-    public static HolidayDto mapToDto(HolidayEntity entity, HolidayDto dto) {
+    public static HolidayDto toDto(HolidayEntity entity, HolidayDto dto) {
+        if (entity == null) {
+            return null;
+        }
         dto.setDay(entity.getDay());
         dto.setReason(entity.getReason());
         dto.setType(entity.getType());
@@ -19,11 +22,14 @@ public class HolidayMapper {
         return dto;
     }
 
-    public static HolidayEntity mapToEntity(HolidayDto dto) {
-        return mapToEntity(dto, new HolidayEntity());
+    public static HolidayEntity toEntity(HolidayDto dto) {
+        return toEntity(dto, new HolidayEntity());
     }
 
-    public static HolidayEntity mapToEntity(HolidayDto dto, HolidayEntity entity) {
+    public static HolidayEntity toEntity(HolidayDto dto, HolidayEntity entity) {
+        if (dto == null) {
+            return null;
+        }
         entity.setDay(dto.getDay());
         entity.setReason(dto.getReason());
         entity.setType(dto.getType());

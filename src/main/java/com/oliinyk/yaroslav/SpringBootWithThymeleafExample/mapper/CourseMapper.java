@@ -9,36 +9,46 @@ public class CourseMapper {
 
     private CourseMapper() {}
 
-    public static CourseDto mapToDto(CourseEntity entity) {
-        return CourseMapper.mapToDto(entity, new CourseDto());
+    public static CourseDto toDto(CourseEntity entity) {
+        return CourseMapper.toDto(entity, new CourseDto());
     }
 
-    public static CourseDto mapToDto(CourseEntity entity, CourseDto dto) {
+    public static CourseDto toDto(CourseEntity entity, CourseDto dto) {
+        if (entity == null) {
+            return null;
+        }
         dto.setCourseId(entity.getCourseId());
         dto.setName(entity.getName());
         dto.setFees(entity.getFees());
-        dto.setPersons(
-            entity.getPersons().stream()
-                .map(PersonMapper::mapToDto)
-                .collect(Collectors.toSet())
-        );
+        if (entity.getPersons() != null) {
+            dto.setPersons(
+                entity.getPersons().stream()
+                    .map(PersonMapper::toDto)
+                    .collect(Collectors.toSet())
+            );
+        }
 
         return dto;
     }
 
-    public static CourseEntity mapToEntity(CourseDto dto) {
-        return CourseMapper.mapToEntity(dto, new CourseEntity());
+    public static CourseEntity toEntity(CourseDto dto) {
+        return CourseMapper.toEntity(dto, new CourseEntity());
     }
 
-    public static CourseEntity mapToEntity(CourseDto dto, CourseEntity entity) {
+    public static CourseEntity toEntity(CourseDto dto, CourseEntity entity) {
+        if (dto == null) {
+            return null;
+        }
         entity.setCourseId(dto.getCourseId());
         entity.setName(dto.getName());
         entity.setFees(dto.getFees());
-        entity.setPersons(
-            dto.getPersons().stream()
-                .map(PersonMapper::mapToEntity)
-                .collect(Collectors.toSet())
-        );
+        if (dto.getPersons() != null) {
+            entity.setPersons(
+                dto.getPersons().stream()
+                    .map(PersonMapper::toEntity)
+                    .collect(Collectors.toSet())
+            );
+        }
 
         return entity;
     }

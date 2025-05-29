@@ -21,7 +21,7 @@ public class HolidayServiceImpl implements HolidayService {
     public List<HolidayDto> findAll() {
         Iterable<HolidayEntity> holidays = holidayRepository.findAll();
         return StreamSupport.stream(holidays.spliterator(), false)
-            .map(HolidayMapper::mapToDto)
+            .map(HolidayMapper::toDto)
             .toList();
     }
 }

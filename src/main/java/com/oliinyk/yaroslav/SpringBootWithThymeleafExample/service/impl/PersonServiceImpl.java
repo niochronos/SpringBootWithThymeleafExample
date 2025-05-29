@@ -29,14 +29,14 @@ public class PersonServiceImpl implements PersonService {
 
     public boolean createNewPerson(PersonDto personDto) {
         RoleEntity roleEntity = roleRepository.getByRoleName(AppConstants.STUDENT_ROLE);
-        personDto.setRole(RoleMapper.mapToDto(roleEntity));
+        personDto.setRole(RoleMapper.toDto(roleEntity));
 
         String encodedPwd = passwordEncoder.encode(personDto.getPwd());
         personDto.setPwd(encodedPwd);
         personDto.setConfirmPwd(encodedPwd);
 
         PersonEntity personEntity = personRepository.save(
-            PersonMapper.mapToEntity(personDto)
+            PersonMapper.toEntity(personDto)
         );
 
         return personEntity.getPersonId() > 0;
@@ -44,18 +44,18 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Optional<PersonDto> findById(int id) {
-        return personRepository.findById(id).map(PersonMapper::mapToDto);
+        return personRepository.findById(id).map(PersonMapper::toDto);
     }
 
     @Override
     public Optional<PersonDto> readByEmail(String email) {
-        return personRepository.readByEmail(email).map(PersonMapper::mapToDto);
+        return personRepository.readByEmail(email).map(PersonMapper::toDto);
     }
 
     @Override
     public PersonDto save(PersonDto personDto) {
-        return PersonMapper.mapToDto(
-            personRepository.save(PersonMapper.mapToEntity(personDto))
+        return PersonMapper.toDto(
+            personRepository.save(PersonMapper.toEntity(personDto))
         );
     }
 }

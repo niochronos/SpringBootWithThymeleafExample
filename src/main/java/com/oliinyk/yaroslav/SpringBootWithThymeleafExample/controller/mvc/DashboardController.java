@@ -41,7 +41,7 @@ public class DashboardController {
             }
             session.setAttribute("loggedInPerson", personDto);
         });
-        logMessages();
+//        logMessages();
         return "dashboard.html";
     }
 

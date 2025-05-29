@@ -7,22 +7,28 @@ public class RoleMapper {
 
     private RoleMapper() {}
 
-    public static RoleDto mapToDto(RoleEntity entity) {
-        return mapToDto(entity, new RoleDto());
+    public static RoleDto toDto(RoleEntity entity) {
+        return toDto(entity, new RoleDto());
     }
 
-    public static RoleDto mapToDto(RoleEntity entity, RoleDto dto) {
+    public static RoleDto toDto(RoleEntity entity, RoleDto dto) {
+        if (entity == null) {
+            return null;
+        }
         dto.setRoleId(entity.getRoleId());
         dto.setRoleName(entity.getRoleName());
 
         return dto;
     }
 
-    public static RoleEntity mapToEntity(RoleDto dto) {
-        return mapToEntity(dto, new RoleEntity());
+    public static RoleEntity toEntity(RoleDto dto) {
+        return toEntity(dto, new RoleEntity());
     }
 
-    public static RoleEntity mapToEntity(RoleDto dto, RoleEntity entity) {
+    public static RoleEntity toEntity(RoleDto dto, RoleEntity entity) {
+        if (dto == null) {
+            return null;
+        }
         entity.setRoleId(dto.getRoleId());
         entity.setRoleName(dto.getRoleName());
 

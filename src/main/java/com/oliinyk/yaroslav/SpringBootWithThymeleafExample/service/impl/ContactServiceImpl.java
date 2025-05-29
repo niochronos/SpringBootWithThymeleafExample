@@ -35,7 +35,7 @@ public class ContactServiceImpl implements ContactService {
 
         contactDto.setStatus(OPEN);
         ContactEntity savedContact = contactRepository.save(
-            ContactMapper.mapToEntity(contactDto)
+            ContactMapper.toEntity(contactDto)
         );
         return savedContact.getContactId() > 0;
     }
@@ -51,7 +51,7 @@ public class ContactServiceImpl implements ContactService {
             sortDir.equals(ORDER_BY_ASC) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending()
         );
         Page<ContactEntity> msgPage = contactRepository.findByStatusWithQuery(OPEN, pageable);
-        return msgPage.map(ContactMapper::mapToDto);
+        return msgPage.map(ContactMapper::toDto);
     }
 
     public boolean updateMsgStatus(int contactId) {

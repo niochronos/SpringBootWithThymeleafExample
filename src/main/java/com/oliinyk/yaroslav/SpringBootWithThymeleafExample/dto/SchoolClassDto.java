@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -15,5 +16,5 @@ public class SchoolClassDto {
     @Size(min = 3, message = "Name must be at least 3 characters long")
     private String name;
 
-    private Set<PersonDto> persons;
+    private Set<PersonDto> persons = new HashSet<>();
 }
