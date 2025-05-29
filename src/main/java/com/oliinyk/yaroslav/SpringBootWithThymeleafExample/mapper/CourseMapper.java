@@ -17,16 +17,30 @@ public class CourseMapper {
         if (entity == null) {
             return null;
         }
-        dto.setCourseId(entity.getCourseId());
-        dto.setName(entity.getName());
-        dto.setFees(entity.getFees());
-        if (entity.getPersons() != null) {
+        CourseMapper.toDtoShallow(entity, dto);
+
+        if (entity.getPersons() != null && !entity.getPersons().isEmpty()) {
             dto.setPersons(
                 entity.getPersons().stream()
-                    .map(PersonMapper::toDto)
+                    .map(PersonMapper::toDtoShallow)
                     .collect(Collectors.toSet())
             );
         }
+
+        return dto;
+    }
+
+    public static CourseDto toDtoShallow(CourseEntity entity) {
+        return CourseMapper.toDtoShallow(entity, new CourseDto());
+    }
+
+    public static CourseDto toDtoShallow(CourseEntity entity, CourseDto dto) {
+        if (entity == null) {
+            return null;
+        }
+        dto.setCourseId(entity.getCourseId());
+        dto.setName(entity.getName());
+        dto.setFees(entity.getFees());
 
         return dto;
     }
@@ -39,16 +53,29 @@ public class CourseMapper {
         if (dto == null) {
             return null;
         }
-        entity.setCourseId(dto.getCourseId());
-        entity.setName(dto.getName());
-        entity.setFees(dto.getFees());
-        if (dto.getPersons() != null) {
+        CourseMapper.toEntityShallow(dto, entity);
+        if (dto.getPersons() != null && !dto.getPersons().isEmpty()) {
             entity.setPersons(
                 dto.getPersons().stream()
-                    .map(PersonMapper::toEntity)
+                    .map(PersonMapper::toEntityShallow)
                     .collect(Collectors.toSet())
             );
         }
+
+        return entity;
+    }
+
+    public static CourseEntity toEntityShallow(CourseDto dto) {
+        return CourseMapper.toEntityShallow(dto, new CourseEntity());
+    }
+
+    public static CourseEntity toEntityShallow(CourseDto dto, CourseEntity entity) {
+        if (dto == null) {
+            return null;
+        }
+        entity.setCourseId(dto.getCourseId());
+        entity.setName(dto.getName());
+        entity.setFees(dto.getFees());
 
         return entity;
     }
