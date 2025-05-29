@@ -33,6 +33,9 @@ DELETE FROM person where email='admin@school.com';
 INSERT INTO `person` (`name`,`email`,`mobile_number`,`pwd`,`role_id`,`created_at`, `created_by`)
   VALUES ('Admin','admin@school.com','3443434343','$2a$10$XhU4UcSxDPb5G0I0fT/CZ.Lfj2VW2fkLkUP5cOEM.xM8EzyUQXaD2', 1 ,CURDATE(),'DBA');
 
+INSERT INTO `person` (`name`,`email`,`mobile_number`,`pwd`,`role_id`,`created_at`, `created_by`)
+  VALUES ('user','user@email.com','1234567890','$2a$10$ULsZssr/eHKhta50E8SwReM6h5kt.r5OgK9AwkBNiKIVc6EacgZq.', 2 ,CURDATE(),'anonymousUser');
+
 INSERT INTO `contact_msg` (`name`,`mobile_num`,`email`,`subject`,`message`,`status`,`created_at`, `created_by`)
   VALUES ('Adam','2176436587','zadam@gmail.com','Regarding a job','Wanted to join as teacher','Open',CURDATE(),'DBA');
 
