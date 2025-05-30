@@ -34,4 +34,9 @@ public class CourseServiceImpl implements CourseService {
     public void save(CourseDto courseDto) {
         courseRepository.save(CourseMapper.toEntity(courseDto));
     }
+
+    @Override
+    public void deleteById(int id) {
+        courseRepository.deleteById(id);
+    }
 }

@@ -13,4 +13,6 @@ public interface CourseService {
     Optional<CourseDto> findById(int id);
 
     void save(CourseDto courseDto);
+
+    public void deleteById(int id);
 }

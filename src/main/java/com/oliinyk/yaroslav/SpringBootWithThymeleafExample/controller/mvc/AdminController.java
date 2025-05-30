@@ -160,6 +160,22 @@ public class AdminController {
         return modelAndView;
     }
 
+    @RequestMapping("/deleteCourse")
+    public ModelAndView deleteCourse(Model model, @RequestParam int id) {
+        Optional<CourseDto> courseDtoOptional = courseService.findById(id);
+        courseDtoOptional.ifPresent(courseDto ->
+            courseDto.getPersons().forEach(
+                personDto -> {
+                    personDto.setSchoolClass(null);
+                    personService.save(personDto);
+                }
+            )
+        );
+        courseService.deleteById(id);
+        ModelAndView modelAndView = new ModelAndView("redirect:/admin/displayCourses");
+        return modelAndView;
+    }
+
     @GetMapping("/viewStudents")
     public ModelAndView viewStudents(
         Model model,

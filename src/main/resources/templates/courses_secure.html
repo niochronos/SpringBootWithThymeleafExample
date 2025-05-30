@@ -79,7 +79,8 @@
                 <th scope="col">Course ID</th>
                 <th scope="col">Course Name</th>
                 <th scope="col">Fees</th>
-                <th scope="col"></th>
+                <th scope="col">VIEW</th>
+                <th scope="col">DELETE</th>
             </tr>
             </thead>
             <tbody>
@@ -87,7 +88,8 @@
                 <td th:text="${course.courseId}"></td>
                 <td th:text="${course.name}"></td>
                 <td th:text="${course.fees}"></td>
-                <td><a th:href="@{/admin/viewStudents(id=${course.courseId})}" class="btn btn-warning">VIEW STUDENTS</a></td>
+                <td><a th:href="@{/admin/viewStudents(id=${course.courseId})}" class="btn btn-success">VIEW STUDENTS</a></td>
+                <td><a th:href="@{/admin/deleteCourse(id=${course.courseId})}" class="btn btn-warning">DELETE</a></td>
             </tr>
             </tbody>
         </table>
