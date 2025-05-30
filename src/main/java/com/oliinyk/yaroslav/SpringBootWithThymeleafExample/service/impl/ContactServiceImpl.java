@@ -14,6 +14,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ContactServiceImpl implements ContactService {
 
@@ -58,5 +61,29 @@ public class ContactServiceImpl implements ContactService {
         int rows = contactRepository.updateStatusById(CLOSE, contactId);
 //        int rows = contactRepository.updateMsgStatusNative(AppConstants.CLOSE, contactId);
         return rows > 0;
+    }
+
+    @Override
+    public List<ContactDto> findByStatus(String status) {
+        return contactRepository.findByStatus(status).stream()
+            .map(ContactMapper::toDto)
+            .toList();
+    }
+
+    @Override
+    public ContactDto save(ContactDto contactDto) {
+        return ContactMapper.toDto(
+            contactRepository.save(ContactMapper.toEntity(contactDto))
+        );
+    }
+
+    @Override
+    public void deleteById(int id) {
+        contactRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<ContactDto> findById(int id) {
+        return contactRepository.findById(id).map(ContactMapper::toDto);
     }
 }
