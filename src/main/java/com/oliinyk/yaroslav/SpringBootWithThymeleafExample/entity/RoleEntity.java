@@ -1,8 +1,6 @@
 package com.oliinyk.yaroslav.SpringBootWithThymeleafExample.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
