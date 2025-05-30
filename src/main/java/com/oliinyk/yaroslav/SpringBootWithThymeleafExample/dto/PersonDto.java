@@ -1,6 +1,8 @@
 package com.oliinyk.yaroslav.SpringBootWithThymeleafExample.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.annotation.FieldsValueMatch;
+import com.oliinyk.yaroslav.SpringBootWithThymeleafExample.annotation.PasswordValidator;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -11,6 +13,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@FieldsValueMatch.List({
+    @FieldsValueMatch(
+        field = "pwd",
+        fieldMatch = "confirmPwd",
+        message = "Passwords do not match!"
+    ),
+    @FieldsValueMatch(
+        field = "email",
+        fieldMatch = "confirmEmail",
+        message = "Email addresses do not match!"
+    )
+})
 public class PersonDto {
 
     private int personId;
@@ -34,7 +48,7 @@ public class PersonDto {
 
     @NotBlank(message = "Password must not be blank")
     @Size(min = 5, message = "Password must be at least 5 characters long")
-//    @PasswordValidator
+    @PasswordValidator
     @JsonIgnore
     private String pwd;
 
