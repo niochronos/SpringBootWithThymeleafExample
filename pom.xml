@@ -31,6 +31,8 @@
 
 	<properties>
 		<java.version>17</java.version>
+		<jib.version>3.4.4</jib.version>
+		<image.tag>${project.version}</image.tag>
 	</properties>
 
 	<dependencies>
@@ -141,6 +143,16 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>${jib.version}</version>
+				<configuration>
+					<to>
+						<image>niochronos/${project.artifactId}:${image.tag}</image>
+					</to>
 				</configuration>
 			</plugin>
 		</plugins>
