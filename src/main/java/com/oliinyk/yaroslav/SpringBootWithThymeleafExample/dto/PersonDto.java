@@ -8,11 +8,18 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
-@Data
+//@Data
+@Getter
+@Setter
+//@EqualsAndHashCode
 @FieldsValueMatch.List({
     @FieldsValueMatch(
         field = "pwd",
@@ -64,4 +71,16 @@ public class PersonDto {
     private SchoolClassDto schoolClass;
 
     private Set<CourseDto> courses = new HashSet<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonDto personDto = (PersonDto) o;
+        return Objects.equals(email, personDto.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(email);
+    }
 }

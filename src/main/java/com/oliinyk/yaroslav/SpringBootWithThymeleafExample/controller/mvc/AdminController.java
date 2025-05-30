@@ -80,6 +80,8 @@ public class AdminController {
             modelAndView.addObject("schoolClass", schoolClassDto);
             session.setAttribute("schoolClass", schoolClassDto);
         });
+        List<PersonDto> students = personService.findAll();
+        modelAndView.addObject("students", students);
         if(error != null) {
             errorMessage = "Invalid Email entered!!";
             modelAndView.addObject("errorMessage", errorMessage);
@@ -87,15 +89,17 @@ public class AdminController {
         return modelAndView;
     }
 
-    @PostMapping("/addStudent")
+    @GetMapping("/addStudent")
     public ModelAndView addStudent(
         Model model,
-        @ModelAttribute("person") PersonDto person,
+//        @ModelAttribute("person") PersonDto person,
+        @RequestParam("email") String email,
         HttpSession session
     ) {
         ModelAndView modelAndView = new ModelAndView();
         SchoolClassDto schoolClassDto = (SchoolClassDto) session.getAttribute("schoolClass");
-        Optional<PersonDto> personOpt = personService.readByEmail(person.getEmail());
+//        Optional<PersonDto> personOpt = personService.readByEmail(person.getEmail());
+        Optional<PersonDto> personOpt = personService.readByEmail(email);
         if(personOpt.isEmpty() || !(personOpt.get().getPersonId() > 0)) {
             modelAndView.setViewName(
                 "redirect:/admin/displayStudents?classId=" + schoolClassDto.getClassId() + "&error=true"
@@ -123,6 +127,7 @@ public class AdminController {
         personOpt.ifPresent(
             personDto -> {
                 personDto.setSchoolClass(null);
+                personService.save(personDto);
                 schoolClassDto.getPersons().remove(personDto);
             }
         );
@@ -170,6 +175,8 @@ public class AdminController {
             modelAndView.addObject("course", courseDto);
             session.setAttribute("course", courseDto);
         });
+        List<PersonDto> students = personService.findAll();
+        modelAndView.addObject("students", students);
         if(error != null) {
             errorMessage = "Invalid Email entered!!";
             modelAndView.addObject("errorMessage", errorMessage);
@@ -177,15 +184,17 @@ public class AdminController {
         return modelAndView;
     }
 
-    @PostMapping("/addStudentToCourse")
+    @GetMapping("/addStudentToCourse")
     public ModelAndView addStudentToCourse(
         Model model,
-        @ModelAttribute("person") PersonDto person,
+//        @ModelAttribute("person") PersonDto person,
+        @RequestParam("email") String email,
         HttpSession session
     ) {
         ModelAndView modelAndView = new ModelAndView();
         CourseDto courseDto = (CourseDto) session.getAttribute("course");
-        Optional<PersonDto> personOpt = personService.readByEmail(person.getEmail());
+//        Optional<PersonDto> personOpt = personService.readByEmail(person.getEmail());
+        Optional<PersonDto> personOpt = personService.readByEmail(email);
         if(personOpt.isEmpty() || !(personOpt.get().getPersonId() > 0)) {
             modelAndView.setViewName(
                 "redirect:/admin/viewStudents?id=" + courseDto.getCourseId() + "&error=true"
