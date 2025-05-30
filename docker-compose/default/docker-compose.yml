@@ -1,0 +1,7 @@
+services:
+
+  school-mvc-web:
+    image: niochronos/spring-boot-mvc-thymeleaf-example:latest
+    container_name: school-mvc-web
+    ports:
+      - 8080:8080
